@@ -13,9 +13,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductEditComponent implements OnInit{
   pageTitle = 'Product Edit';
   errorMessage = '';
-  product: Product | null = null;
 
   private dataIsValid: { [key: string]: boolean } = {};
+
+  get isDirty(): boolean {
+    return JSON.stringify(this.originalProduct) !== JSON.stringify(this.currentProduct);
+  }
+
+  private currentProduct: Product | null = null;
+  private originalProduct: Product | null = null;
+
+  get product(): Product | null {
+    return this.currentProduct;
+  }
+  set product(value: Product | null) {
+    this.currentProduct = value;
+    this.originalProduct = value ? { ...value } : null;
+  }
+
 
   constructor(private productService: ProductService,
               private messageService: MessageService,
@@ -46,7 +61,6 @@ export class ProductEditComponent implements OnInit{
 
   deleteProduct(): void {
       if (!this.product || !this.product.id) {
-        // Don't delete, it was never saved.
         this.onSaveComplete(`${this.product?.productName} was deleted`);
       } else {
         if (confirm(`Really delete the product: ${this.product.productName}?`)) {
@@ -69,6 +83,11 @@ export class ProductEditComponent implements OnInit{
       Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
   }
 
+  reset(): void {
+    this.dataIsValid = {};
+    this.currentProduct = null;
+    this.originalProduct = null;
+  }
 
   saveProduct(): void {
     if (this.product) {
@@ -92,7 +111,7 @@ export class ProductEditComponent implements OnInit{
     if (message) {
       this.messageService.addMessage(message);
     }
-
+    this.reset();
     // Navigate back to the product list
     this.router.navigate(['/products']);
   }
