@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 import { Product } from './product';
 import { ProductService } from './product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { StarComponent } from '../shared/star.component';
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.css'],
+    standalone: true,
+    imports: [FormsModule, NgIf, NgFor, RouterLink, StarComponent, CurrencyPipe]
 })
 export class ProductListComponent implements OnInit {
   pageTitle = 'Product List';
@@ -14,7 +19,7 @@ export class ProductListComponent implements OnInit {
   imageMargin = 2;
   showImage = false;
   errorMessage = '';
-
+  
   _listFilter = '';
   get listFilter(): string {
     return this._listFilter;

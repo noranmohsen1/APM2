@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, ProductResolved } from './product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { StarComponent } from '../shared/star.component';
+import { NgIf, CurrencyPipe } from '@angular/common';
 
 @Component({
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+    templateUrl: './product-detail.component.html',
+    styleUrls: ['./product-detail.component.css'],
+    standalone: true,
+    imports: [NgIf, StarComponent, RouterLink, CurrencyPipe]
 })
 export class ProductDetailComponent implements OnInit{
   pageTitle = 'Product Detail';

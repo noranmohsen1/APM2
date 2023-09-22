@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    standalone: true,
+    imports: [FormsModule, NgClass, NgIf, RouterLink]
 })
 export class LoginComponent {
   errorMessage = '';

@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { AuthService } from './user/auth.service';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './app.animation';
 import { MessageService } from './messages/message.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'pm-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  animations:[slideInAnimation]
+    selector: 'pm-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    animations: [slideInAnimation],
+    standalone: true,
+    imports: [NgIf, RouterLinkActive, RouterLink, RouterOutlet]
 })
 export class AppComponent {
   pageTitle = 'Acme Product Management';

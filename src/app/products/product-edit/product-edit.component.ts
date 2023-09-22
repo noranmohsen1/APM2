@@ -4,11 +4,14 @@ import { MessageService } from '../../messages/message.service';
 
 import { Product, ProductResolved } from '../product';
 import { ProductService } from '../product.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
+import { NgIf, NgClass } from '@angular/common';
 
 @Component({
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+    templateUrl: './product-edit.component.html',
+    styleUrls: ['./product-edit.component.css'],
+    standalone: true,
+    imports: [NgIf, RouterLinkActive, RouterLink, NgClass, RouterOutlet]
 })
 export class ProductEditComponent implements OnInit{
   pageTitle = 'Product Edit';

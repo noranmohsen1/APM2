@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MessageService } from './message.service';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  templateUrl: './message.component.html',
-  styles: [
-    '.message-row { margin-bottom: 10px }'
-  ]
+    templateUrl: './message.component.html',
+    styles: [
+        '.message-row { margin-bottom: 10px }'
+    ],
+    standalone: true,
+    imports: [NgFor, NgIf]
 })
 export class MessageComponent {
   get messages(): string[] {
