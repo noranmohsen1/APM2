@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnInit{
   ngOnInit(): void {
    const resolvedData: ProductResolved =
    this.route.snapshot.data['resolvedData'];
-   this.errorMessage =String(resolvedData.error);
+   this.errorMessage = resolvedData.error ? String(resolvedData.error): '';
    this.onProductRetrieved(resolvedData.product!);
   }
 

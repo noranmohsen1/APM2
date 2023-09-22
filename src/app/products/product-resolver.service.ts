@@ -21,7 +21,7 @@ export class ProductResolver implements Resolve<ProductResolved> {
       return of({product: null, error: message});
 
     }
-    return this.productService.getProduct(+!id)
+    return this.productService.getProduct(+id!)
     .pipe(
       map(product => ({product: product})),
       catchError(error => {

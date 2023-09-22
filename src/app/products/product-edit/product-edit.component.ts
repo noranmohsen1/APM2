@@ -40,7 +40,7 @@ export class ProductEditComponent implements OnInit{
  ngOnInit(): void {
     this.route.data.subscribe(data => {
     const resolvedData: ProductResolved = data['resolvedData'];
-    this.errorMessage = String(resolvedData.error);
+    this.errorMessage = resolvedData.error ? String(resolvedData.error): '';
     this.onProductRetrieved(resolvedData.product!);
   });
 }
